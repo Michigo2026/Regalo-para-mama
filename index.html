@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Mamá ❤️</title>
+    <style>
+        /* --- ESTILOS (CSS) --- */
+        body {
+            background: radial-gradient(circle, #ff007f 0%, #33001a 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .contenedor {
+            position: relative;
+            width: 90%;
+            max-width: 400px;
+            height: 80vh;
+            background-color: #f5f0e1;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            border: 5px solid #ff99cc;
+        }
+
+        #mensaje {
+            position: absolute;
+            top: 50px;
+            left: 20px;
+            right: 20px;
+            font-size: 1.1rem;
+            color: #5c4033;
+            line-height: 1.5;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        /* Tronco del árbol */
+        .tronco {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 120px;
+            background: linear-gradient(#8b4513, #5c2a06);
+            border-radius: 10px 10px 0 0;
+        }
+
+        /* Flores animadas */
+        .flor {
+            position: absolute;
+            font-size: 1.5rem;
+            animation: caer linear infinite;
+            user-select: none;
+            z-index: 5;
+        }
+
+        @keyframes caer {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translateY(90vh) rotate(360deg); opacity: 0; }
+        }
+
+        #contador {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            font-size: 0.85rem;
+            color: #333;
+            padding: 15px 0;
+            text-align: center;
+            border-top: 2px solid #ff99cc;
+            font-weight: bold;
+        }
+
+        /* Corazón decorativo detrás del árbol */
+        .corazon-fondo {
+            position: absolute;
+            bottom: 150px;
+            font-size: 10rem;
+            color: rgba(255, 105, 180, 0.2);
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        <div class="corazon-fondo">❤</div>
+        <div id="mensaje"></div>
+        <div class="tronco"></div>
+        <div id="contenedor-flores"></div>
+        <div id="contador"></div>
+    </div>
+
+    <script>
+        /* --- LÓGICA (JavaScript) --- */
+
+        // 1. Configuración del mensaje
+        const textoMensaje = `¡Feliz día, Mamá! ❤️\n\nGracias por ser mi guía y mi mayor apoyo. Tu amor ha florecido en mí cada día.\n\nTe quiero con todo mi corazón.\n— Tu hijo, Michael.`;
+        
+        let indexTexto = 0;
+        const elementoMensaje = document.getElementById('mensaje');
+
+        function escribirTexto() {
+            if (indexTexto < textoMensaje.length) {
+                const char = textoMensaje.charAt(indexTexto);
+                elementoMensaje.innerHTML += char === '\n' ? '<br>' : char;
+                indexTexto++;
+                setTimeout(escribirTexto, 60);
+            }
+        }
+
+        // 2. Generador de flores (Mix de flores para mamá)
+        const contenedorFlores = document.getElementById('contenedor-flores');
+        const tiposFlores = ['🌸', '🌹', '🌷', '🌺', '🌻', '✨'];
+
+        function crearFlor() {
+            const flor = document.createElement('div');
+            flor.classList.add('flor');
+            flor.innerText = tiposFlores[Math.floor(Math.random() * tiposFlores.length)];
+            flor.style.left = Math.random() * 90 + '%';
+            flor.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            contenedorFlores.appendChild(flor);
+
+            setTimeout(() => { flor.remove(); }, 6000);
+        }
+
+        setInterval(crearFlor, 300);
+
+        // 3. Contador basado en tu fecha de nacimiento
+        const fechaNacimiento = new Date('2005-06-23T00:00:00'); 
+        const elementoContador = document.getElementById('contador');
+
+        function actualizarContador() {
+            const ahora = new Date();
+            const diff = ahora - fechaNacimiento;
+
+            const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutos = Math.floor((diff / 1000 / 60) % 60);
+            const segundos = Math.floor((diff / 1000) % 60);
+
+            elementoContador.innerHTML = `He tenido la dicha de tenerte como mamá por:<br>${dias} días, ${horas}h, ${minutos}m y ${segundos}s`;
+        }
+
+        // Iniciar todo
+        escribirTexto();
+        setInterval(actualizarContador, 1000);
+        actualizarContador();
+
+    </script>
+</body>
+</html>
+
