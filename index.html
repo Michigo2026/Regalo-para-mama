@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Mamá ❤️</title>
+    <title>Para Mamá ❤️ | Anime All</title>
     <style>
         /* --- ESTILOS (CSS) --- */
         body {
@@ -13,6 +13,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
+            padding: 0;
             overflow: hidden;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
@@ -21,7 +22,7 @@
             position: relative;
             width: 90%;
             max-width: 400px;
-            height: 80vh;
+            height: 85vh;
             background-color: #f5f0e1;
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.5);
@@ -35,7 +36,7 @@
 
         #mensaje {
             position: absolute;
-            top: 50px;
+            top: 40px;
             left: 20px;
             right: 20px;
             font-size: 1.1rem;
@@ -45,19 +46,17 @@
             z-index: 10;
         }
 
-        /* Tronco del árbol */
         .tronco {
             position: absolute;
-            bottom: 80px;
+            bottom: 120px;
             left: 50%;
             transform: translateX(-50%);
             width: 20px;
-            height: 120px;
+            height: 100px;
             background: linear-gradient(#8b4513, #5c2a06);
             border-radius: 10px 10px 0 0;
         }
 
-        /* Flores animadas */
         .flor {
             position: absolute;
             font-size: 1.5rem;
@@ -74,19 +73,33 @@
 
         #contador {
             position: absolute;
-            bottom: 0;
+            bottom: 40px; /* Subimos un poco para dar espacio al footer */
             left: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.8);
-            font-size: 0.85rem;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 0.8rem;
             color: #333;
-            padding: 15px 0;
+            padding: 10px 0;
             text-align: center;
-            border-top: 2px solid #ff99cc;
+            border-top: 1px solid #ff99cc;
             font-weight: bold;
         }
 
-        /* Corazón decorativo detrás del árbol */
+        /* --- NUEVO PIE DE PÁGINA --- */
+        footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            font-size: 0.7rem;
+            text-align: center;
+            padding: 8px 0;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
         .corazon-fondo {
             position: absolute;
             bottom: 150px;
@@ -103,14 +116,18 @@
         <div id="mensaje"></div>
         <div class="tronco"></div>
         <div id="contenedor-flores"></div>
+        
         <div id="contador"></div>
+        
+        <footer>
+            Todos los derechos reservados Michael Anime All © 2026
+        </footer>
     </div>
 
     <script>
         /* --- LÓGICA (JavaScript) --- */
 
-        // 1. Configuración del mensaje
-        const textoMensaje = `¡Feliz día, Mamá! ❤️\n\nGracias por ser mi guía y mi mayor apoyo. Tu amor ha florecido en mí cada día.\n\nTe quiero con todo mi corazón.\n— Tu hijo, Michael.`;
+        const textoMensaje = `¡Feliz día, Mamá! ❤️\n\nGracias por ser mi guía y mi mayor apoyo. Tu amor ha florecido en mí cada día.\n\nTe quiero con todo mi corazón.\n— Tu hijo, Mich.`;
         
         let indexTexto = 0;
         const elementoMensaje = document.getElementById('mensaje');
@@ -124,7 +141,6 @@
             }
         }
 
-        // 2. Generador de flores (Mix de flores para mamá)
         const contenedorFlores = document.getElementById('contenedor-flores');
         const tiposFlores = ['🌸', '🌹', '🌷', '🌺', '🌻', '✨'];
 
@@ -141,7 +157,7 @@
 
         setInterval(crearFlor, 300);
 
-        // 3. Contador basado en tu fecha de nacimiento
+        // Contador configurado con tu fecha de nacimiento
         const fechaNacimiento = new Date('2005-06-23T00:00:00'); 
         const elementoContador = document.getElementById('contador');
 
@@ -157,7 +173,6 @@
             elementoContador.innerHTML = `He tenido la dicha de tenerte como mamá por:<br>${dias} días, ${horas}h, ${minutos}m y ${segundos}s`;
         }
 
-        // Iniciar todo
         escribirTexto();
         setInterval(actualizarContador, 1000);
         actualizarContador();
@@ -165,4 +180,3 @@
     </script>
 </body>
 </html>
-
